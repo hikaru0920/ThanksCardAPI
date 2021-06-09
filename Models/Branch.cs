@@ -12,8 +12,6 @@ namespace ThanksCardAPI.Models
         public virtual Department Parent { get; set; }
         public virtual ICollection<Department> Children { get; set; }
 
-
-=======
         // Parent には親部署が入る
         // Children には子部署リストが入る
         // 1対多: Department エンティティには複数の User エンティティが属する
