@@ -8,9 +8,6 @@ namespace ThanksCardAPI.Models
     {
         public long Id { get; set; }
         public string Name { get; set; }
-        public long? ParentId { get; set; }
-        public virtual Department Parent { get; set; }
-        public virtual ICollection<Department> Children { get; set; }
 
         // Parent には親部署が入る
         // Children には子部署リストが入る
