@@ -24,7 +24,10 @@ namespace ThanksCardAPI.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Branch>>> GetBranches()
         {
-            return await _context.Branches.ToListAsync();
+
+            return await _context.Branches
+                                    .Include(Branch => Branch.Department)
+                                    .ToListAsync();
         }
 
         // GET: api/Departments/5
@@ -73,18 +76,15 @@ namespace ThanksCardAPI.Controllers
 
         // POST: api/Departments
         [HttpPost]
-        public async Task<ActionResult<Department>> PostDepartment(Department department)
+        public async Task<ActionResult<Branch>> PostDepartment(Branch branch)
         {
             // Parent Department には既に存在している部署が入るため、更新の対象から外す。
-            if (department.Parent != null)
-            {
-                _context.Departments.Attach(department.Parent);
-            }
+            
 
-            _context.Departments.Add(department);
+            _context.Branches.Add(branch);
             await _context.SaveChangesAsync();
 
-            return CreatedAtAction("GetDepartment", new { id = department.Id }, department);
+            return CreatedAtAction("GetBranch", new { id = branch.Id }, branch);
         }
 
         // DELETE: api/Departments/5
