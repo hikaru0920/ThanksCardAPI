@@ -8,7 +8,7 @@ namespace ThanksCardAPI.Models
         public bool IsAdmin { get; set; }
 
         // 多対1: User エンティティは1つの Department エンティティに属する
-        public long? DepartmentId { get; set; }
-        public virtual Department Department { get; set; }
+        public long? BranchId { get; set; }
+        public virtual Branch Branch { get; set; }
     }
 }
